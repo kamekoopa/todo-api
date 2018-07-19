@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+
+  rdb:
+    image: mariadb:10.0.28
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: todo-api
+      MYSQL_PASSWORD: todo-api
+      MYSQL_DATABASE: todo-api
+
+    command:
+      - --character-set-server=utf8mb4
+
+    ports:
+      - "3306:3306"
+
+  es:
+    build:
+      context: ./docker/local_test
+      dockerfile: Dockerfile_es
+    image: kamekoopa/es:6.3.1-0.0.1
+
+    environment:
+      cluster.name: todo-api
+      network.host: 0.0.0.0
+      discovery.type: single-node
+      discovery.zen.minimum_master_nodes: 1
+
+    ports:
+      - "9200:9200"
+      - "9300:9300"

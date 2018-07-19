@@ -1,0 +1,7 @@
+/.idea/
+/logs/
+/project/project/
+!/project/project/plugins.sbt
+/project/target/
+/target/
+*.log
