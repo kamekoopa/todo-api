@@ -89,10 +89,10 @@ class TodoRepositoryImpl @Inject()(protected val config: Configuration) extends 
 
     lazy val clm = Todos.column
     for {
-      _ <- this.deleteDocument(id)
       _ <- tryWith {
         applyUpdate(delete.from(Todos).where.eq(clm.id, id))
       }
+      _ <- this.deleteDocument(id)
     } yield ()
   }
 
