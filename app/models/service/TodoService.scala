@@ -4,6 +4,7 @@ import javax.inject.{Inject, Singleton}
 import models.domain.error.{ApplicationError, NotFound}
 import models.domain.todo.lifecycle.TodoRepository
 import models.domain.todo.model.{CreateRequest, SearchQuery, Todo}
+import scalikejdbc.TxBoundary.Either._
 import scalikejdbc._
 
 @Singleton
